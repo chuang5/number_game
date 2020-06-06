@@ -38,9 +38,9 @@ app.get('/', function(req, res){
 })
 
 
-app.listen(3000, err => {
+app.listen(3001, err => {
   if (err) {
     return console.error(err);
   }
-  return console.log(`server is listening on 3000`);
+  return console.log(`server is listening on 3001`);
 });
