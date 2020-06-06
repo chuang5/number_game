@@ -40,6 +40,10 @@ class Guess_card extends Component {
             d4: this.state.d4,
         }
         console.log(data.d1, data.d2, data.d3, data.d4);
+        axios.post(backend_host + '/checkAnswer', data)
+            .then(response => {
+                console.log(response);
+            });
     }
 
 
