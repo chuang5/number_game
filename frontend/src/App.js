@@ -5,6 +5,7 @@ import { backend_host } from './config';
 import './App.css';
 
 //components
+import Main from './components/Main';
 import Guess_card from './components/Guess_card';
 import Guess_table from './components/Guess_table';
 
@@ -16,15 +17,10 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
-				<header className="App-header">
-					<p>Welcome to Guess the Number!</p>
-				</header>
-				<div class="container">
-					<Guess_card />
-					<Guess_table />
-				</div>
-			</div >
+			<BrowserRouter>
+				{/* App Component Has a Child Component called Main*/}
+				<Main />
+			</BrowserRouter>
 		);
 	}
 }
