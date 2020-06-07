@@ -5,8 +5,12 @@ var bodyParser = require('body-parser');
 // var cookieParser = require('cookie-parser');
 var cors = require('cors');
 
+var checkAnswer = require('./routers/checkAnswer');
+
 var app = express();
+const router = express.Router();
 app.use(express.static(__dirname + '/'));
+
 app.set('view engine', 'ejs');
 
 //use cors to allow cross origin resource sharing
@@ -22,21 +26,25 @@ app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 // }));
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: false}))
 
 //Allow Access Control
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-    res.setHeader('Cache-Control', 'no-cache');
-    next();
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+  res.setHeader('Cache-Control', 'no-cache');
+  next();
 });
 
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
   res.sendFile('/index.html')
 })
 
+router.post('/checkAnswer', checkAnswer.check);
+
+app.use('/', router)
 
 app.listen(3001, err => {
   if (err) {
