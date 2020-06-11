@@ -1,9 +1,10 @@
-var answer = require('./startAGame');
 
 exports.check = function (req, res) {
     console.log('checkanswer: req', req.body);
-    console.log(answer.answer.a1, parseInt(req.body.d1))
-    if (answer.answer.a1 === parseInt(req.body.d1)) {
+    var answer = req.body.answer
+    console.log(answer[2], parseInt(req.body.d2))
+    if (answer[0] == parseInt(req.body.d1) & answer[1] == parseInt(req.body.d2)
+        & answer[2] == parseInt(req.body.d3) & answer[3] == parseInt(req.body.d4)) {
         res.status(200).json({
             message: 'true'
         })

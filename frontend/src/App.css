@@ -36,6 +36,16 @@
   font-size: 30px;
 }
 
+.numInputNotValid {
+  width: 45px;
+  height: 35px;
+  margin: 0 5px;
+  text-align: center;
+  border-radius: 8px;
+  border-color: rgb(255, 83, 83);
+  font-size: 30px;
+}
+
 .container {
   margin-top: 10%;
 }
