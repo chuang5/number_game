@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { backend_host } from '../config';
+import { Switch, Route } from 'react-router-dom';
 import '../App.css';
 
 //components
 import Start from './Start';
 import Game from './Game';
 import Nav from './Nav';
-import Guess_card from './Guess_card';
-import Guess_table from './Guess_table';
 
 
 class Main extends Component {

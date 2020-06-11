@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var checkAnswer = require('./routers/checkAnswer');
+var startAGame = require('./routers/startAGame');
 
 var app = express();
 const router = express.Router();
@@ -43,6 +44,7 @@ app.get('/', function (req, res) {
 })
 
 router.post('/checkAnswer', checkAnswer.check);
+router.get('/start', startAGame.start);
 
 app.use('/', router)
 

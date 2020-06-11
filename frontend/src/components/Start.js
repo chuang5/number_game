@@ -1,26 +1,43 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { BrowserRouter } from 'react-router-dom';
-import { backend_host } from '../config';
+import Button from 'react-bootstrap/Button';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import '../App.css';
+import axios from 'axios';
+import { backend_host } from '../config';
+import { Link } from 'react-router-dom';
 
 //components
-import Guess_card from './Guess_card';
-import Guess_table from './Guess_table';
 
 
 class Start extends Component {
-	constructor(props) {
-		super(props);
-	}
+    constructor(props) {
+        super(props);
 
-	render() {
-		return (
-			<div className="App">
-                <a href='/game'>Start the game</a>
-			</div >
-		);
-	}
+        this.startAGame = this.startAGame.bind(this);
+    }
+
+    startAGame = (e) => {
+        e.preventDefault();
+        axios.get(backend_host + '/start')
+            .then(response => {
+                if (response.status === 200) {
+                    console.log(response.data.answer)
+                    window.sessionStorage.setItem('answer', response.data.answer)
+                    window.location.href = '/game';
+                }
+            })
+    }
+
+    render() {
+        return (
+            <div className="App container">
+                <Jumbotron >
+                    <h5>Choose a level!</h5>
+                    <p><Button onClick={this.startAGame}>Start the game</Button></p>
+                </Jumbotron>
+            </div >
+        );
+    }
 }
 
 export default Start;
