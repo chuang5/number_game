@@ -32,7 +32,7 @@ class Guess_card extends Component {
 
     handleChange = (e) => {
         console.log([e.target.name] + ":" + e.target.value)
-        if (0 < e.target.value && e.target.value < 10) {
+        if (0 <= e.target.value && e.target.value < 10) {
             switch (e.target.name) {
                 case 'd1':
                     this.setState({ d1Valid: true });
@@ -72,12 +72,14 @@ class Guess_card extends Component {
             && this.state.d3Valid === true && this.state.d4Valid === true) {
             this.setState({ hint: "" });
             var answer = window.sessionStorage.getItem('answer').split(',');
+            var guess = [];
+            guess.push(this.state.d1);
+            guess.push(this.state.d2);
+            guess.push(this.state.d3);
+            guess.push(this.state.d4);
             const data = {
                 answer: answer,
-                d1: this.state.d1,
-                d2: this.state.d2,
-                d3: this.state.d3,
-                d4: this.state.d4,
+                guess: guess
             }
             console.log(data);
             axios.post(backend_host + '/checkAnswer', data)

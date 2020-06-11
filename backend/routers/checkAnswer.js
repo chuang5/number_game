@@ -1,16 +1,28 @@
 
 exports.check = function (req, res) {
     console.log('checkanswer: req', req.body);
-    var answer = req.body.answer
-    console.log(answer[2], parseInt(req.body.d2))
-    if (answer[0] == parseInt(req.body.d1) & answer[1] == parseInt(req.body.d2)
-        & answer[2] == parseInt(req.body.d3) & answer[3] == parseInt(req.body.d4)) {
+    var answer = req.body.answer;
+    var guess = req.body.guess;
+    
+    
+    if (answer[0] == guess[0] & answer[1] == guess[1]
+        & answer[2] == guess[2] & answer[3] == guess[3]) {
         res.status(200).json({
             message: 'true'
         })
     } else {
+        var A = 0, B = 0;
+        for(var i = 0; i < 4; i++){
+            if(guess[i] == answer[i]){
+                A++;
+            }else if(answer.includes(guess[i])){
+                B++;
+            }
+        }
+        var str = A + "A" + B + "B";
         res.status(200).json({
-            message: 'false'
+            guess: guess,
+            result: str
         })
     }
 

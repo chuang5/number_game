@@ -11,6 +11,7 @@ class Guess_table extends Component {
     //call the constructor method
     constructor(props) {
         super(props);
+        console.log("table", props)
     }
 
 
