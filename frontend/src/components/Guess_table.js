@@ -11,11 +11,11 @@ class Guess_table extends Component {
     //call the constructor method
     constructor(props) {
         super(props);
-        console.log("table", props)
     }
 
 
     render() {
+        var str = (window.sessionStorage.getItem('answer'));
         return (
             <Table striped bordered hover size="sm" style={{margin: "3% 2%", width: "96%"}}>
                 <thead>
@@ -26,7 +26,7 @@ class Guess_table extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>9527</td>
+                        <td>{str}</td>
                         <td>1A1B</td>
                     </tr>
                 </tbody>

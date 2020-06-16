@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { Redirect } from 'react-router';
 import { backend_host } from '../config';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -85,6 +84,25 @@ class Guess_card extends Component {
             axios.post(backend_host + '/checkAnswer', data)
                 .then(response => {
                     console.log(response);
+                    var attemps = new Array();
+                    var guess = '';
+                    response.data.guess.forEach(element => {
+                        guess += element;
+                    });
+                    var attemp = {
+                        'guess': guess,
+                        'feedback': response.data.result
+                    }
+                    attemps = attemps.concat(attemp)
+                    console.log(attemp)
+                    console.log(attemps)
+
+                    if (window.sessionStorage.getItem("attemps") != null) {
+                        var old_guesses = JSON.parse(window.sessionStorage.getItem("attemps"))
+                        console.log(old_guesses)
+                        attemps = attemps.concat(old_guesses)
+                    } 
+                    window.sessionStorage.setItem("attemps", JSON.stringify(attemps));
                 });
         } else {
             this.setState({ hint: "Please check your input" });
@@ -98,7 +116,7 @@ class Guess_card extends Component {
         let input2 = (<input onChange={this.handleChange} name="d2" class="numInput"></input>)
         let input3 = (<input onChange={this.handleChange} name="d3" class="numInput"></input>)
         let input4 = (<input onChange={this.handleChange} name="d4" class="numInput"></input>)
-        let hint = (<p style={{color: "red"}}>{this.state.hint}</p>)
+        let hint = (<p style={{ color: "red" }}>{this.state.hint}</p>)
         if (this.state.d1Valid === false) {
             input1 = (<input onChange={this.handleChange} name="d1" class="numInputNotValid"></input>)
         }
