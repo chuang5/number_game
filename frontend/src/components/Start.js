@@ -4,7 +4,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import '../App.css';
 import axios from 'axios';
 import { backend_host } from '../config';
-import { Link } from 'react-router-dom';
 
 //components
 

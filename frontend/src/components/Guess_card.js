@@ -45,6 +45,8 @@ class Guess_card extends Component {
                 case 'd4':
                     this.setState({ d4Valid: true });
                     break;
+                default:
+                    break;
             }
         } else {
             switch (e.target.name) {
@@ -59,6 +61,8 @@ class Guess_card extends Component {
                     break;
                 case 'd4':
                     this.setState({ d4Valid: false });
+                    break;
+                default:
                     break;
             }
         }
@@ -84,7 +88,7 @@ class Guess_card extends Component {
             axios.post(backend_host + '/checkAnswer', data)
                 .then(response => {
                     console.log(response);
-                    var attemps = new Array();
+                    var attemps = [];
                     var guess = '';
                     response.data.guess.forEach(element => {
                         guess += element;
