@@ -42,7 +42,6 @@ class Guess_table extends Component {
                     </tr>
                 )
             })
-            // window.location.reload()
         }
         return (
             <Table striped bordered hover size="sm" style={{margin: "3% 2%", width: "96%"}}>

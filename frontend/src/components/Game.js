@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { BrowserRouter } from 'react-router-dom';
-import { backend_host } from '../config';
 import '../App.css';
 
 //components

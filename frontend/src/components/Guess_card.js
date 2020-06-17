@@ -92,8 +92,7 @@ class Guess_card extends Component {
                     var guess = '';
 
                     if (response.data.result === 'true') {
-                        window.sessionStorage.clear();
-                        window.location.href = '/'
+                        window.location.href = '/congrats'
                     } else {
                         response.data.guess.forEach(element => {
                             guess += element;
@@ -118,7 +117,6 @@ class Guess_card extends Component {
             this.setState({ hint: "Please check your input" });
         }
     }
-
 
     render() {
         let input1 = (<input onChange={this.handleChange} name="d1" class="numInput"></input>)
@@ -156,7 +154,7 @@ class Guess_card extends Component {
                         </form>
                         {hint}
                     </Card.Text>
-                    <Button onClick={this.handleSubmit} variant="primary">Go somewhere</Button>
+                    <Button onClick={this.handleSubmit} variant="primary">Check your answer</Button>
                 </Card.Body>
             </Card>
         )

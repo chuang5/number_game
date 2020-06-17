@@ -6,6 +6,7 @@ import '../App.css';
 import Start from './Start';
 import Game from './Game';
 import Nav from './Nav';
+import Congrats from './Congrats';
 
 
 class Main extends Component {
@@ -16,6 +17,7 @@ class Main extends Component {
                 <Switch>
                     <Route path="/start" component={Start} />
                     <Route path="/game" component={Game} />
+                    <Route path="/congrats" component={Congrats} />
                 </Switch>
             </div>
         );
