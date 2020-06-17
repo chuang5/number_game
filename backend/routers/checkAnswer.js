@@ -1,5 +1,4 @@
-
-exports.check = function (req, res) {
+exports.normalCheck = function (req, res) {
     console.log('checkanswer: req', req.body);
     var answer = req.body.answer;
     var guess = req.body.guess;

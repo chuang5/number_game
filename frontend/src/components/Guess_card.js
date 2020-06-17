@@ -5,8 +5,6 @@ import { backend_host } from '../config';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-//import Cookies from 'universal-cookie';
-
 //Define a Guess_card Component
 class Guess_card extends Component {
     //call the constructor method

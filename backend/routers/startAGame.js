@@ -10,7 +10,6 @@ exports.start = function (req, res) {
     
     console.log(arr)
     res.status(200).json({
-        answer: arr,
-        message: 'test'
+        answer: arr
     })
 }
