@@ -43,7 +43,8 @@ app.get('/', function (req, res) {
   res.sendFile('/index.html')
 })
 
-router.post('/checkAnswer', checkAnswer.normalCheck);
+router.post('/normalcheck', checkAnswer.normalCheck);
+router.post('/easycheck', checkAnswer.easyCheck);
 router.get('/start', startAGame.start);
 
 app.use('/', router)

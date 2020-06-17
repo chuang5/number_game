@@ -83,34 +83,39 @@ class Guess_card extends Component {
                 guess: guess
             }
             console.log(data);
-            axios.post(backend_host + '/checkAnswer', data)
-                .then(response => {
-                    console.log(response);
-                    var attemps = [];
-                    var guess = '';
+            if (window.sessionStorage.getItem('level') === 'normal') {
+                axios.post(backend_host + '/checkAnswer', data)
+                    .then(response => {
+                        console.log(response);
+                        var attemps = [];
+                        var guess = '';
 
-                    if (response.data.result === 'true') {
-                        window.location.href = '/congrats'
-                    } else {
-                        response.data.guess.forEach(element => {
-                            guess += element;
-                        });
-                        var attemp = {
-                            'guess': guess,
-                            'feedback': response.data.result
-                        }
-                        attemps = attemps.concat(attemp)
-                        console.log(attemp)
-                        console.log(attemps)
+                        if (response.data.result === 'true') {
+                            window.location.href = '/congrats'
+                        } else {
+                            response.data.guess.forEach(element => {
+                                guess += element;
+                            });
+                            var attemp = {
+                                'guess': guess,
+                                'feedback': response.data.result
+                            }
+                            attemps = attemps.concat(attemp)
+                            console.log(attemp)
+                            console.log(attemps)
 
-                        if (window.sessionStorage.getItem("attemps") != null) {
-                            var old_guesses = JSON.parse(window.sessionStorage.getItem("attemps"))
-                            console.log(old_guesses)
-                            attemps = attemps.concat(old_guesses)
+                            if (window.sessionStorage.getItem("attemps") != null) {
+                                var old_guesses = JSON.parse(window.sessionStorage.getItem("attemps"))
+                                console.log(old_guesses)
+                                attemps = attemps.concat(old_guesses)
+                            }
+                            window.sessionStorage.setItem("attemps", JSON.stringify(attemps));
                         }
-                        window.sessionStorage.setItem("attemps", JSON.stringify(attemps));
-                    }
-                });
+                    });
+            } else if(window.sessionStorage.getItem('level') === 'easy'){
+
+            }
+
         } else {
             this.setState({ hint: "Please check your input" });
         }
