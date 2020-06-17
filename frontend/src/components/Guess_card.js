@@ -90,28 +90,33 @@ class Guess_card extends Component {
                     console.log(response);
                     var attemps = [];
                     var guess = '';
-                    response.data.guess.forEach(element => {
-                        guess += element;
-                    });
-                    var attemp = {
-                        'guess': guess,
-                        'feedback': response.data.result
-                    }
-                    attemps = attemps.concat(attemp)
-                    console.log(attemp)
-                    console.log(attemps)
 
-                    if (window.sessionStorage.getItem("attemps") != null) {
-                        var old_guesses = JSON.parse(window.sessionStorage.getItem("attemps"))
-                        console.log(old_guesses)
-                        attemps = attemps.concat(old_guesses)
-                    } 
-                    window.sessionStorage.setItem("attemps", JSON.stringify(attemps));
+                    if (response.data.result === 'true') {
+                        window.sessionStorage.clear();
+                        window.location.href = '/'
+                    } else {
+                        response.data.guess.forEach(element => {
+                            guess += element;
+                        });
+                        var attemp = {
+                            'guess': guess,
+                            'feedback': response.data.result
+                        }
+                        attemps = attemps.concat(attemp)
+                        console.log(attemp)
+                        console.log(attemps)
+
+                        if (window.sessionStorage.getItem("attemps") != null) {
+                            var old_guesses = JSON.parse(window.sessionStorage.getItem("attemps"))
+                            console.log(old_guesses)
+                            attemps = attemps.concat(old_guesses)
+                        }
+                        window.sessionStorage.setItem("attemps", JSON.stringify(attemps));
+                    }
                 });
         } else {
             this.setState({ hint: "Please check your input" });
         }
-
     }
 
 

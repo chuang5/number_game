@@ -8,7 +8,7 @@ exports.check = function (req, res) {
     if (answer[0] == guess[0] & answer[1] == guess[1]
         & answer[2] == guess[2] & answer[3] == guess[3]) {
         res.status(200).json({
-            message: 'true'
+            result: 'true'
         })
     } else {
         var A = 0, B = 0;

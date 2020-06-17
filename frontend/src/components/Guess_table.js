@@ -11,11 +11,39 @@ class Guess_table extends Component {
     //call the constructor method
     constructor(props) {
         super(props);
+
+        this.state = {
+            attemps: []
+        }
     }
 
+    componentDidMount(){
 
+        this.getData();
+        console.log(this.state.attemps)
+        
+        setInterval(this.getData, 500);
+    }
+
+    getData = () => {
+        this.setState({
+            attemps: JSON.parse(window.sessionStorage.getItem('attemps'))
+        })
+    }
+    
     render() {
-        var str = (window.sessionStorage.getItem('answer'));
+        let str = null;
+        if(this.state.attemps != null){
+            str = this.state.attemps.map(current => {
+                return(
+                    <tr>
+                        <td>{current.guess}</td>
+                        <td>{current.feedback}</td>
+                    </tr>
+                )
+            })
+            // window.location.reload()
+        }
         return (
             <Table striped bordered hover size="sm" style={{margin: "3% 2%", width: "96%"}}>
                 <thead>
@@ -25,10 +53,7 @@ class Guess_table extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{str}</td>
-                        <td>1A1B</td>
-                    </tr>
+                    {str}
                 </tbody>
             </Table>
         )

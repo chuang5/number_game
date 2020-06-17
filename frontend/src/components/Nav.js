@@ -4,10 +4,6 @@ import '../App.css';
 import { Redirect } from 'react-router';
 
 class Nav extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		let redirect = null;
 		if(!window.sessionStorage.getItem('session')){
