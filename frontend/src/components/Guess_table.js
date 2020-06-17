@@ -16,7 +16,6 @@ class Guess_table extends Component {
     }
 
     componentDidMount() {
-
         this.getData();
         console.log(this.state.attemps)
 
@@ -48,7 +47,7 @@ class Guess_table extends Component {
                     return (
                         <tr>
                             <td>{current.guess}</td>
-                            <td>easy {current.feedback}</td>
+                            <td>{current.feedback}</td>
                         </tr>
                     )
                 })

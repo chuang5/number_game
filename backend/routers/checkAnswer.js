@@ -38,18 +38,19 @@ exports.easyCheck = function (req, res) {
             result: 'true'
         })
     } else {
-        var A = 0, B = 0;
+        var ret = [];
         for(var i = 0; i < 4; i++){
             if(guess[i] == answer[i]){
-                A++;
+                ret.push(2);
             }else if(answer.includes(guess[i])){
-                B++;
+                ret.push(1);
+            }else{
+                ret.push(0);
             }
         }
-        var str = A + "A" + B + "B";
         res.status(200).json({
             guess: guess,
-            result: str
+            result: ret
         })
     }
 }
