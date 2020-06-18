@@ -13,6 +13,9 @@ class Guess_table extends Component {
             attemps: [],
             level: window.sessionStorage.getItem('level')
         }
+
+        this.getData = this.getData.bind(this);
+        this.renderResultOfFeedback = this.renderResultOfFeedback.bind(this);
     }
 
     componentDidMount() {
@@ -28,6 +31,18 @@ class Guess_table extends Component {
         })
     }
 
+    renderResultOfFeedback = (s, e) => {
+        let r = null;
+        if (e === 0) {
+            r = <span>{s}</span>
+        } else if (e === 1) {
+            r = <span style={{ backgroundColor: 'orange' }}>{s}</span>
+        } else if (e === 2) {
+            r = <span style={{ backgroundColor: '#5dbab7', color: 'white' }}>{s}</span>
+        }
+        return r;
+    }
+
     render() {
         let str = null;
         if (this.state.level === 'normal') {
@@ -41,13 +56,19 @@ class Guess_table extends Component {
                     )
                 })
             }
-        } else if (this.state.level === 'easy'){
+        } else if (this.state.level === 'easy') {
             if (this.state.attemps != null) {
                 str = this.state.attemps.map(current => {
+                    let feed1 = this.renderResultOfFeedback(current.guess.substring(0, 1), current.feedback[0])
+                    let feed2 = this.renderResultOfFeedback(current.guess.substring(1, 2), current.feedback[1])
+                    let feed3 = this.renderResultOfFeedback(current.guess.substring(2, 3), current.feedback[2])
+                    let feed4 = this.renderResultOfFeedback(current.guess.substring(3, 4), current.feedback[3])
+
+                    // console.log(feed1)
                     return (
                         <tr>
                             <td>{current.guess}</td>
-                            <td>{current.feedback}</td>
+                            <td>{feed1}{feed2}{feed3}{feed4}</td>
                         </tr>
                     )
                 })

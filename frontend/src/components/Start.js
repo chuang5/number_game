@@ -29,7 +29,7 @@ class Start extends Component {
         this.startAGame();
     }
 
-    startAGame = (e) => {
+    startAGame = () => {
         axios.get(backend_host + '/start')
             .then(response => {
                 if (response.status === 200) {

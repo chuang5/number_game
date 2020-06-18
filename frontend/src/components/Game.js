@@ -7,10 +7,6 @@ import Guess_table from './Guess_table';
 
 
 class Game extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<div className="App">
