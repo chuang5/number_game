@@ -34,11 +34,11 @@ class Guess_table extends Component {
     renderResultOfFeedback = (s, e) => {
         let r = null;
         if (e === 0) {
-            r = <span>{s}</span>
+            r = <span class="feedback">{s}</span>
         } else if (e === 1) {
-            r = <span style={{ backgroundColor: 'orange' }}>{s}</span>
+            r = <span class="feedback" style={{ backgroundColor: 'orange' }}>{s}</span>
         } else if (e === 2) {
-            r = <span style={{ backgroundColor: '#5dbab7', color: 'white' }}>{s}</span>
+            r = <span class="feedback" style={{ backgroundColor: '#5dbab7', color: 'white' }}>{s}</span>
         }
         return r;
     }
